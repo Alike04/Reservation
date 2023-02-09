@@ -29,7 +29,6 @@ const Navbar = ({ user, logout }) => {
       // style={{ borderTopWidth: "12px" }}
     >
       <div className="flex w-[90%] mx-auto justify-around items-center h-[100%]">
-        <NavLink to="/">LOGO</NavLink>
         <div className="flex  justify-center">
           <NavLink to="/menu" className="nav-btn">
             Menu

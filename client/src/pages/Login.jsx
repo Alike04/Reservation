@@ -27,7 +27,7 @@ const Login = () => {
       .post(`${import.meta.env.VITE_API_URL}/login`, body, config)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        navigate("/");
+        navigate("/reservation");
         window.location.reload();
       })
       .catch((e) => {

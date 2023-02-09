@@ -35,7 +35,6 @@ function App() {
       <BrowserRouter>
         <Navbar user={user} logout={logout} />
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/reservation" element={<Booking user={user} />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/login" element={<Login />} />

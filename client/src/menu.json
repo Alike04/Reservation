@@ -1,16 +1,34 @@
 {
   "products": [
     {
-      "name": "Kasha",
-      "price": "2348",
-      "photo": "https://media.discordapp.net/attachments/1069499644704464899/1072604757409153064/kasha-arnautka-v-multivarke_1563940053_1_max.png?width=914&height=670",
-      "ingredients": "Zerno, milk, water, sugar"
+      "name": " ribeye steak",
+      "photo": "https://media.discordapp.net/attachments/956434157762916383/1073299712007999509/IMG_9727.png?width=535&height=670",
+      "ingredients": "free-range farm veal"
     },
     {
-      "name": "Grechka",
-      "price": "2348",
-      "photo": "https://media.discordapp.net/attachments/1069499644704464899/1072606741595959396/depositphotos_15364881-stock-photo-buckwheat.png",
-      "ingredients": "Grecha, milk, butter"
+      "name": "udon with vegetables and beef",
+      "photo": "https://media.discordapp.net/attachments/956434157762916383/1073299801489297519/IMG_9736.png?width=540&height=669",
+      "ingredients": "udon noodles, vegetables, veal cooked on wok"
+    },
+    {
+      "name": "chicken kiev",
+      "photo": "https://media.discordapp.net/attachments/956434157762916383/1073300124467470437/63805c38-55e9-4216-bf70-4cb0c125e10c.jpg?width=535&height=670",
+      "ingredients": "chicken fillet with cold butter coated with egg and bread crumbs"
+    },
+    {
+      "name": "grilled salad",
+      "photo": "https://media.discordapp.net/attachments/956434157762916383/1073300190288687206/45D6C704-D402-4800-B721-B9F6C64B93B6.jpg?width=543&height=670",
+      "ingredients": "embalmed salad of beans, fresh vegetables and brisket"
+    },
+    {
+      "name": "dried horse meat",
+      "photo": "https://media.discordapp.net/attachments/956434157762916383/1073300220307329086/IMG_9732.png?width=544&height=670",
+      "ingredients": "dried horse meat with olives"
+    },
+    {
+      "name": "grilled beef tongue",
+      "photo": "https://media.discordapp.net/attachments/956434157762916383/1073300340574789663/2f929cc9-4312-42c8-b5f7-34b1bad82bdd.jpg?width=540&height=669",
+      "ingredients": "beef, roasted vegetables, pepper sauce"
     }
   ]
 }

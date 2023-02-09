@@ -15,6 +15,7 @@ const Booking = ({ user }) => {
   const [time, setTime] = useState("9AM");
   const [size, setSize] = useState();
   const [focus, setFocus] = useState();
+  const [allTables, setAllTables] = useState();
 
   const fetchAvailableTables = () => {
     axios
@@ -38,7 +39,15 @@ const Booking = ({ user }) => {
       .catch((e) => console.log(e));
   };
   useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/table-all`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
+      .then((res) => {
+        setAllTables(res.data.tables);
+      });
     fetchBookings();
+    fetchAvailableTables();
   }, []);
   useEffect(() => {
     if (!user) return;
@@ -49,13 +58,6 @@ const Booking = ({ user }) => {
   //   const newTables = tables.filter((table) => table.capacity == size);
   //   setTables(newTables);
   // }, [size]);
-  // if (!user) {
-  //   return (
-  //     <div className="flex justify-center items-center">
-  //       <button className="px-4 py-2 ">Log in</button>
-  //     </div>
-  //   );
-  // }
   if (!user) {
     return (
       <div className="flex justify-center items-center h-[80vh]">
@@ -90,8 +92,9 @@ const Booking = ({ user }) => {
         )
         .then((res) => {
           fetchAvailableTables();
+          fetchBookings();
         })
-        .catch();
+        .catch((e) => console.error(e));
     };
     return (
       <>
@@ -166,9 +169,18 @@ const Booking = ({ user }) => {
   };
 
   const Booking = ({ data }) => {
-    console.log(data);
-    const table = tables.find((t) => t._id == data.tableId);
-    console.log(table);
+    const cancel = () => {
+      axios
+        .delete(`${import.meta.env.VITE_API_URL}/book/${data._id}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        })
+        .then(() => {
+          window.location.reload();
+        })
+        .catch((e) => console.log(e));
+    };
+    const table = allTables.find((t) => t._id == data.tableId);
+
     return (
       <div
         key={nanoid()}
@@ -177,7 +189,10 @@ const Booking = ({ user }) => {
         <h1>Time: {data.time}</h1>
         <h1>Table number: {table.number}</h1>
         <h1>{data.date.slice(0, 10)}</h1>
-        <button className="text-white bg-red-500 mt-4 py-2 px-4 hover:bg-red-600">
+        <button
+          onClick={cancel}
+          className="text-white bg-red-500 mt-4 py-2 px-4 hover:bg-red-600"
+        >
           Cancel
         </button>
       </div>
@@ -189,46 +204,54 @@ const Booking = ({ user }) => {
       <div className="container">
         <h1 className="text-center font-bold text-lg">Table Reservation</h1>
         <div className="flex justify-around mt-10">
-          <input
-            defaultValue={now}
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-            min={new Date().toISOString().split("T")[0]}
-            className="w-[250px] bg-red-500 text-white p-2"
-            type="date"
-          />
-          <select
-            onChange={(e) => {
-              setTime(e.target.value);
-            }}
-            name="time"
-            className="w-[250px] bg-red-500 p-2 text-white"
-            id=""
-          >
-            <option value="9AM">9AM</option>
-            <option value="10AM">10AM</option>
-            <option value="11AM">11AM</option>
-            <option value="1PM">1PM</option>
-            <option value="2PM">2PM</option>
-            <option value="3PM">3PM</option>
-            <option value="4PM">4PM</option>
-            <option value="5PM">5PM</option>
-            <option value="6PM">6PM</option>
-          </select>
-          <select
-            onChange={(e) => setSize(e.target.value)}
-            name="size"
-            className="w-[250px] bg-red-500 p-2 text-white"
-            id=""
-          >
-            <option value="-">-</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
+          <div>
+            <h1 className="text-center font-bold">Date</h1>
+            <input
+              defaultValue={now}
+              onChange={(e) => {
+                setDate(e.target.value);
+              }}
+              min={new Date().toISOString().split("T")[0]}
+              className="w-[250px] bg-red-500 text-white p-2"
+              type="date"
+            />
+          </div>
+          <div>
+            <h1 className="text-center font-bold">Time</h1>
+            <select
+              onChange={(e) => {
+                setTime(e.target.value);
+              }}
+              name="time"
+              className="w-[250px] bg-red-500 p-2 text-white"
+              id=""
+            >
+              <option value="9AM">9AM</option>
+              <option value="10AM">10AM</option>
+              <option value="11AM">11AM</option>
+              <option value="1PM">1PM</option>
+              <option value="2PM">2PM</option>
+              <option value="3PM">3PM</option>
+              <option value="4PM">4PM</option>
+              <option value="5PM">5PM</option>
+              <option value="6PM">6PM</option>
+            </select>
+          </div>
+          <div>
+            <h1 className="text-center font-bold">Party size</h1>
+            <select
+              onChange={(e) => setSize(e.target.value)}
+              name="size"
+              className="w-[250px] bg-red-500 p-2 text-white"
+              id=""
+            >
+              <option value="-">-</option>
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8">8</option>
+            </select>
+          </div>
         </div>
         {showDialog && <Confirm />}
         <div className="grid grid-cols-4 gap-4 justify-center mt-10 p-10">

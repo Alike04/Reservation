@@ -27,7 +27,7 @@ const Register = () => {
       .post(`${import.meta.env.VITE_API_URL}/register`, body)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        navigate("/");
+        navigate("/reservation");
       })
       .catch((e) => {
         setError(e.message);

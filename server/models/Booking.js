@@ -7,6 +7,7 @@ const bookSchema = new mongoose.Schema({
   },
   userId: { type: mongoose.SchemaTypes.ObjectId, ref: "user" },
   tableId: { type: mongoose.SchemaTypes.ObjectId, ref: "table" },
+  status: { type: String, enum: ["active", "cancel"] }
 })
 
 module.exports = mongoose.model("booking", bookSchema)
