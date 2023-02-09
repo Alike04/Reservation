@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "name": "Kasha",
+      "price": "2348",
+      "photo": "https://media.discordapp.net/attachments/1069499644704464899/1072604757409153064/kasha-arnautka-v-multivarke_1563940053_1_max.png?width=914&height=670",
+      "ingredients": "Zerno, milk, water, sugar"
+    },
+    {
+      "name": "Grechka",
+      "price": "2348",
+      "photo": "https://media.discordapp.net/attachments/1069499644704464899/1072606741595959396/depositphotos_15364881-stock-photo-buckwheat.png",
+      "ingredients": "Grecha, milk, butter"
+    }
+  ]
+}
